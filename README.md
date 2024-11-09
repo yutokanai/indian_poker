@@ -1,18 +1,13 @@
-## Getting Started
+## 概要
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+インディアンポーカーを実装したプログラム。
 
-## Folder Structure
+## 仕様
 
-The workspace contains two folders by default, where:
+カードは マーク-数値 で表現され、マークはS, H, D, Cのいずれか、数値は2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K, Aのいずれか。
+カードの強弱はまず数値を比較し、同じ場合はマークで比較する
+マークはS > H > D > Cの順で強い
+ジョーカーは存在せず、Aはいかなる場合も14として扱う。
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+以下の記事を参考にしています。
+https://zenn.dev/suzuki_hoge/books/2021-02-poker-c35cc52b5525eba35227

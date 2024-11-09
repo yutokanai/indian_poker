@@ -4,12 +4,23 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
+import main.poker.exception.NoSuchRankException;
+import main.poker.exception.NoSuchSuitException;
+import main.poker.exception.TooFewPlayersException;
 import main.poker.player.Players;
 
 public class App {
     public static void main(String[] args) throws Exception {
+
         List<String> argList = Arrays.asList(args);
-        String in = argList.size() == 0 ? "player1:S-J player2:H-3 player3:D-333" : argList.get(0);
-        System.out.println(new Players(in).getStrongestPlayerName());
+       
+        try {
+            String in = argList.size() == 0 ? "player1:S-K player2:H-Q player3:D-3" : argList.get(0);
+            // FIXME: パース不能な文字列が入ってきたときの例外のハンドリング。
+            // FIXME: カードの重複チェックがない。
+            System.out.println(new Players(in).getStrongestPlayerName());
+        } catch (NoSuchRankException | NoSuchSuitException | TooFewPlayersException e) {
+            System.err.println(e.getMessage());
+        }
     }
 }

@@ -17,11 +17,11 @@ public class Card {
         this.rank = new Rank(Arrays.asList(s.split(this.splitter)).get(1));
     }
 
-    public Rank getRank() {
-        return this.rank;
+    public int getRank() {
+        return this.rank.getRank();
     }
 
-    public Suit getSuit() {
-        return this.suit;
+    public int getSuit() {
+        return this.suit.getSuit();
     }
 }
