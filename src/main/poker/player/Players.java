@@ -27,18 +27,12 @@ public class Players {
             throw new TooFewPlayersException();
         }
         
-        // HACK: 綺麗に書きたい。
-        this.players = players.stream().sorted(new Comparator<Player>() {
-            @Override
-            public int compare(Player o1, Player o2) {
-                return o1.getCard().getSuit() - o2.getCard().getSuit();
-            }
-        }).sorted(new Comparator<Player>() {
-            @Override
-            public int compare(Player o1, Player o2) {
-                return o1.getCard().getRank() - o2.getCard().getRank();
-            }
-        }).toList();
+        this.players = players.stream()
+        .sorted(
+            (o1 , o2) -> o1.getCard().getSuit() - o2.getCard().getSuit()
+        ).sorted(
+            (o1, o2) -> o1.getCard().getRank() - o2.getCard().getRank()
+        ).toList();
     };
 
     /**
