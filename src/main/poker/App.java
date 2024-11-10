@@ -2,7 +2,6 @@ package main.poker;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
 
 import main.poker.exception.NoSuchRankException;
 import main.poker.exception.NoSuchSuitException;
