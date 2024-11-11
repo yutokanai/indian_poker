@@ -3,6 +3,7 @@ package main.poker.player;
 import java.util.List;
 import java.util.stream.Stream;
 
+import main.poker.exception.DuplicateCardException;
 import main.poker.exception.TooFewPlayersException;
 
 public class Players {
@@ -18,13 +19,18 @@ public class Players {
      * @param s 入力文字列
      * @return ソート済みのプレイヤー
      */
-    public Players(String s) {
+    public Players(String s) throws DuplicateCardException {
         
         List<Player> players = Stream.of(s.split(splitter)).map(str -> new Player(str)).toList();
         
+        // FIXME: orElseThrowみたいな感じにしたい
         if (players.size() <= 1) {
             throw new TooFewPlayersException();
         }
+
+        if (existDuplicateCard(players)) {
+            throw new DuplicateCardException();
+        };
         
         this.players = players.stream()
         .sorted(
@@ -42,4 +48,13 @@ public class Players {
         return this.players.get(this.players.size() - 1).getPlayerName();
     }
 
+    /**
+     * プレイヤーの持つカードでランク/スートが重複するものが存在するかを返す。
+     * @param players プレイヤーのリスト
+     * @return 重複するカードが存在すればtrue
+     */
+    private boolean existDuplicateCard(List<Player> players) {
+        return players.size() != players.stream().map(p -> p.getCard().getSuit()).distinct().toList().size()
+        && players.size() != players.stream().map(p -> p.getCard().getRank()).distinct().toList().size();
+    }
 }
